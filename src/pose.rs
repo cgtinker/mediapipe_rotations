@@ -1,5 +1,5 @@
 extern crate cgt_math;
-use cgt_math::{Face, Quaternion, Vector3};
+use cgt_math::{Plane, Quaternion, Vector3};
 
 /// Calculates limb fk chain, hip, shoulder and face rotation.
 /// May uses hip center as pivot.
@@ -40,7 +40,7 @@ fn calc_rotation_data(data: &[Vector3; 36]) -> [Quaternion; 36] {
 
 /// Calculates torso rotation.
 fn torso_rotation(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
-    let normal: Vector3 = Face::from_vecs(data[23], data[24], data[34], [0, 1, 2]).normal(); // left hip, right hip, shoulder center
+    let normal: Vector3 = Plane::from_vecs(data[23], data[24], data[34], [0, 1, 2]).normal(); // left hip, right hip, shoulder center
     let tangent: Vector3 = data[24] - data[33]; // right hip, center hip
     let binormal: Vector3 = data[34] - data[33]; // hip center, shoulder center
     rotation_data[33] = Quaternion::from_rotation_axes(
@@ -100,7 +100,7 @@ fn limb_rotations(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
 /// MPs knee, foot_index and heel usually form a triangle.
 fn foot_rotations(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
     // left
-    let tangent = Face::from_vecs(data[25], data[27], data[31], [0, 1, 2]).normal();
+    let tangent = Plane::from_vecs(data[25], data[27], data[31], [0, 1, 2]).normal();
     let binormal = data[25] - data[31];
     let normal = data[27] - data[31];
     rotation_data[27] = Quaternion::from_rotation_axes(
@@ -110,7 +110,7 @@ fn foot_rotations(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
     );
 
     // right
-    let tangent = Face::from_vecs(data[26], data[28], data[32], [0, 1, 2]).normal();
+    let tangent = Plane::from_vecs(data[26], data[28], data[32], [0, 1, 2]).normal();
     let binormal = data[26] - data[32];
     let normal = data[28] - data[32];
     rotation_data[28] = Quaternion::from_rotation_axes(
