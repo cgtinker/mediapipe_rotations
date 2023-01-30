@@ -5,5 +5,13 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+name="mediapipe_rotations"
+crate-type=["dylib"]
+
 [dependencies]
 cgt_math = { git = "https://github.com/cgtinker/cgt_math", branch = "main" }
+
+[dependencies.cpython]
+version = "0.7"
+features = ["extension-module"]

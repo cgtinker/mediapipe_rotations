@@ -1,1 +1,4 @@
 /target
+/venv
+/mediapipe_rotations.egg-info
+*.swp
