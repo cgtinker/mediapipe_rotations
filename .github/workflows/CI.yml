@@ -20,7 +20,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: x86_64
-          args: --release --out dist --sdist -m python/Cargo.toml
+          args: --release --out dist --sdist
       - name: Install built wheel - x86_64
         run: |
           pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
@@ -28,7 +28,7 @@ jobs:
       - name: Build wheels - universal2
         uses: PyO3/maturin-action@v1
         with:
-          args: --release --universal2 --out dist -m python/Cargo.toml
+          args: --release --universal2 --out dist
       - name: Install built wheel - universal2
         run: |
           pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
@@ -55,7 +55,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          args: --release --out dist -m python/Cargo.toml
+          args: --release --out dist --sdist
       - name: Install built wheel
         run: |
           pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
@@ -82,7 +82,7 @@ jobs:
       with:
         target: ${{ matrix.target }}
         manylinux: auto
-        args: --release --out dist -m python/Cargo.toml
+        args: --release --out dist --sdist
     - name: Install built wheel
       if: matrix.target == 'x86_64'
       run: |
@@ -109,7 +109,7 @@ jobs:
       with:
         target: ${{ matrix.target }}
         manylinux: auto
-        args: --release --out dist -m python/Cargo.toml
+        args: --release --out dist --sdist
     - uses: uraimo/run-on-arch-action@v2.5.0
       if: matrix.target != 'ppc64'
       name: Install built wheel
@@ -148,7 +148,7 @@ jobs:
       with:
         target: ${{ matrix.target }}
         manylinux: musllinux_1_2
-        args: --release --out dist -m python/Cargo.toml
+        args: --release --out dist --sdist
     - name: Install built wheel
       if: matrix.target == 'x86_64-unknown-linux-musl'
       uses: addnab/docker-run-action@v3
@@ -185,7 +185,7 @@ jobs:
       with:
         target: ${{ matrix.platform.target }}
         manylinux: musllinux_1_2
-        args: --release --out dist -m python/Cargo.toml
+        args: --release --out dist --sdist
     - uses: uraimo/run-on-arch-action@v2.5.0
       name: Install built wheel
       with:
