@@ -87,9 +87,8 @@ jobs:
     - name: Install built wheel
       if: matrix.target == 'x86_64'
       run: |
-        pip install rjmespath --no-index --find-links dist --force-reinstall
-        pip install pytest
-        cd tests && pytest
+        pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
+        python -c "import mediapipe_rotations"
     - name: Upload wheels
       uses: actions/upload-artifact@v3
       with:
