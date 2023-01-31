@@ -1,3 +1,5 @@
+# based on https://github.com/PyO3/maturin-action
+
 name: CI
 
 on:
@@ -80,20 +82,17 @@ jobs:
     - name: Build wheels
       uses: PyO3/maturin-action@v1
       with:
-        rust-toolchain: stable
+        rust-toolchain: nightly
         target: ${{ matrix.target }}
         manylinux: auto
-        args: --release --out dist --sdist
+        args: --release --out dist
     - name: Install built wheel
       if: matrix.target == 'x86_64'
       run: |
-        python --version
-        python3 --version
         pip --version
-        pip3 --version
-
         pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
-        python3 -c "import mediapipe_rotations"
+        pip freeze
+        python -c "import mediapipe_rotations"
     - name: Upload wheels
       uses: actions/upload-artifact@v3
       with:
