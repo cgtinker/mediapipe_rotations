@@ -3,4 +3,5 @@
 /mediapipe_rotations.egg-info
 /.git
 *.swp
-*__pycache*
+__pycache*
+
