@@ -65,7 +65,8 @@ jobs:
         with:
           name: wheels
           path: dist
- linux:
+
+  linux:
     runs-on: ubuntu-latest
     strategy:
       matrix:
