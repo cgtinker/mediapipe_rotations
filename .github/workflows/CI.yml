@@ -210,8 +210,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    # if: "startsWith(github.ref, 'refs/tags/')"
-    # needs: [ macos, windows, linux, linux-cross, musllinux, musllinux-cross ]
+    needs: [ macos, windows, linux, linux-cross, musllinux, musllinux-cross ]
+    if: "startsWith(github.ref, 'refs/tags/')"
+    steps:
     # steps:
     #   - uses: actions/download-artifact@v3
     #     with:
