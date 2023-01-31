@@ -125,8 +125,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Build wheels
         uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.target }}
+        with:target: ${{ matrix.target }}
           manylinux: auto
           args: --release --out dist
           maturin-version: "v0.13.0"
