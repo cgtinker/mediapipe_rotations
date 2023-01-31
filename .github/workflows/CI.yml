@@ -90,7 +90,9 @@ jobs:
     - name: Install built wheel
       if: matrix.target == 'x86_64'
       run: |
-        pip install dist/mediapipe_rotations.whl --no-index --find-links dist --force-reinstall
+        ls dist
+        ls dists
+        pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
         pip freeze
         python -c "import mediapipe_rotations"
     - name: Upload wheels
