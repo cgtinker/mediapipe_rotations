@@ -77,14 +77,14 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
-        python-version: 3.7
+        python-version: 3.9
         architecture: x64
     - name: Build wheels
       uses: PyO3/maturin-action@v1
       with:
         rust-toolchain: stable
         target: ${{ matrix.target }}
-        manylinux: auto
+        manylinux: 2014
         args: --release --out dist
         maturin-version: "v0.13.0"
     - name: Install built wheel
