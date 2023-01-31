@@ -2,3 +2,4 @@
 /venv
 /mediapipe_rotations.egg-info
 *.swp
+*__pycache
