@@ -83,7 +83,7 @@ jobs:
         rust-toolchain: stable
         target: ${{ matrix.target }}
         manylinux: auto
-        args: --release --out dist
+        args: --release --out dist --sdist
     - name: Install built wheel
       if: matrix.target == 'x86_64'
       run: |
