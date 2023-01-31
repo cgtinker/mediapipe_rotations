@@ -1,17 +1,17 @@
 [package]
-name = "cgt_mediapipe"
+name = "mediapipe_rotations"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [lib]
 name="mediapipe_rotations"
-crate-type=["dylib"]
+crate-type=["cdylib"]
 
 [dependencies]
 cgt_math = { git = "https://github.com/cgtinker/cgt_math", branch = "main" }
+ndarray = "0.15"
+numpy = "0.15"
 
-[dependencies.cpython]
-version = "0.7"
+[dependencies.pyo3]
+version = "0.15"
 features = ["extension-module"]
