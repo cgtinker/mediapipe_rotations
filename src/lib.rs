@@ -8,6 +8,9 @@ pub mod face;
 
 #[pyfunction]
 fn pose(data: Vec<[f32;3]>) -> PyResult<Vec<[f32; 4]>> {
+    // Exposed python function for mediapipe detection results.
+    // Input:   [[f32; 3]; 33]
+    // Output:  [[f32; 4]; 36]
     if data.len() == 33 {
         let rotations = pose::main(&data);
         let mut result: Vec<[f32; 4]> = Vec::new();
@@ -39,11 +42,17 @@ fn _hand(data: Vec<[f32; 3]>) -> Vec<[f32; 4]> {
 
 #[pyfunction]
 fn hand(data: Vec<[f32;3]>) -> PyResult<Vec<[f32; 4]>> {
+    // Exposed python function for mediapipe detection results.
+    // Input:   [[f32; 3]; 21]
+    // Output:  [[f32; 4]; 22]
     return Ok(_hand(data));
 }
 
 #[pyfunction]
 fn hands(data: Vec<Vec<[f32; 3]>>) -> PyResult<Vec<Vec<[f32; 4]>>> {
+    // Exposed python function for mediapipe detection results.
+    // Input:   [[[f32; 3]; 21]; 2]
+    // Output:  [[[f32; 4]; 22]; 2]
     let mut result: Vec<Vec<[f32; 4]>> = Vec::new();
     for cur in data.iter() {
         let _res = _hand(cur.to_vec());
