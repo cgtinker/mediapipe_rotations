@@ -17,7 +17,7 @@ cgt_math = { git = "https://github.com/cgtinker/cgt_math", branch = "main" }
 
 [dependencies.pyo3]
 version = "0.15"
-
-[features]
-extension-module = ["pyo3/extension-module"]
-default = ["extension-module"]
+features = ["extension-module"]
+#//[features]
+#//extension-module = ["pyo3/extension-module"]
+#//default = ["extension-module"]
