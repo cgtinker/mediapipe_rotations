@@ -1,5 +1,4 @@
 import mediapipe_rotations as mpr
-import numpy as np
 from math import isnan
 
 
