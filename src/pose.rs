@@ -3,7 +3,7 @@ use cgt_math::{Plane, Quaternion, Vector3};
 
 /// Calculates limb fk chain, hip, shoulder and face rotation.
 /// May uses hip center as pivot.
-pub fn main(pose: &[[f32; 3]; 33], set_origin: bool) -> ([Vector3; 36], [Quaternion; 36]) {
+pub fn main(pose: &Vec<[f32; 3]>) -> [Quaternion; 36] {
     let mut data: [Vector3; 36] = [Vector3::ZERO; 36];
     for i in 0..33 {
         data[i] = Vector3::from_array(pose[i]);
@@ -11,12 +11,10 @@ pub fn main(pose: &[[f32; 3]; 33], set_origin: bool) -> ([Vector3; 36], [Quatern
 
     data[34] = (data[11] + data[12]) / 2.0; // shoulder center location
     data[33] = (data[23] + data[24]) / 2.0; // hip center location
-    if set_origin {
-        set_pose_origin(&mut data);
-    }
+    set_pose_origin(&mut data);
 
     let rotation_data = calc_rotation_data(&data);
-    return (data, rotation_data);
+    return rotation_data;
 }
 
 /// Uses hip center as pivot.

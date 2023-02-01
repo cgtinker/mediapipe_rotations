@@ -1,3 +1,1 @@
-numpy>=1.20.0
 maturin>=0.14.10
-cffi

@@ -10,12 +10,14 @@ readme = "README.md"
 [lib]
 name="mediapipe_rotations"
 crate-type=["cdylib"]
+path="src/lib.rs"
 
 [dependencies]
 cgt_math = { git = "https://github.com/cgtinker/cgt_math", branch = "main" }
-ndarray = "0.15"
-numpy = "0.15"
 
 [dependencies.pyo3]
 version = "0.15"
-features = ["extension-module"]
+
+[features]
+extension-module = ["pyo3/extension-module"]
+default = ["extension-module"]

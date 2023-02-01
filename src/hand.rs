@@ -10,18 +10,15 @@ const FINGERS: [[usize; 4]; 5] = [
 ];
 const JOINTS: [[usize; 3]; 3] = [[0, 1, 2], [1, 2, 3], [2, 3, 4]];
 
-pub fn main(hand: &[[f32; 3]; 21], set_origin: bool) {
+
+pub fn main(hand: &Vec<[f32; 3]>) -> [Quaternion; 22] {
     let mut data: [Vector3; 22] = [Vector3::ZERO; 22];
     for i in 0..21 {
         data[i] = Vector3::from_array(hand[i]);
     }
-
-    if set_origin {
-        set_hand_origin(&mut data);
-    }
-
+    set_hand_origin(&mut data);
     let rotation_data = calculate_rotations(&data);
-    println!("{:?}", rotation_data);
+    return rotation_data;
 }
 
 /// Sets hand origin to wrist.
