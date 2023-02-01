@@ -32,7 +32,7 @@ jobs:
       - name: Build wheels - universal2
         uses: PyO3/maturin-action@v1
         with:
-          args: --release --out dist --sdist -i 3.8 3.9 3.10 3.11 pypy3.8 pypy3.9
+          args: --release --universal2 --out dist --sdist -i 3.8 3.9 3.10 3.11 pypy3.8 pypy3.9
       - name: Install built wheel - universal2
         run: |
           pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          architecture: ${{ matrix.target }}
+          architecture: ${{ matrix.platform.target }}
       - uses: dtolnay/rust-toolchain@stable
       - name: Build wheels
         uses: PyO3/maturin-action@v1
