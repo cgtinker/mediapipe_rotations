@@ -32,7 +32,7 @@ jobs:
       - name: Build wheels - universal2
         uses: PyO3/maturin-action@v1
         with:
-          args: --release --out dist --sdist -i 3.7 3.8 3.9 3.10 3.11 pypy3.8 pypy3.9
+          args: --release --out dist --sdist -i 3.8 3.9 3.10 3.11 pypy3.8 pypy3.9
       - name: Install built wheel - universal2
         run: |
           pip install mediapipe_rotations --no-index --find-links dist --force-reinstall
@@ -46,6 +46,7 @@ jobs:
 
   windows:
     runs-on: windows-latest
+    name: windows (${{ matrix.platform.target }})
     strategy:
       matrix:
         platform:
@@ -63,7 +64,7 @@ jobs:
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
-          target: ${{ matrix.target }}
+          target: ${{ matrix.platform.target }}
           args: --release --out dist -i ${{ matrix.platform.interpreter }}
       - name: Install built wheel
         run: |
