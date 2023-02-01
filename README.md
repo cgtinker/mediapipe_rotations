@@ -9,7 +9,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 maturin develop
-python3 pybindtest
+pytest
 ```
 
 
@@ -63,8 +63,8 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         # Calculate rotations
         pose_rotation_quaternion = mpr.pose(pose)
-        l_hand_rotation_quaternion = mpr.hand(l_hand)
-        r_hand_rotation_quaternion = mpr.hand(r_hand)
+        hand_rotation_quaternionL = mpr.hand(l_hand)
+        hand_rotation_quaternionR = mpr.hand(r_hand)
         hands_rotation_quaternion = mpr.hands([l_hand, r_hand])
         face_rotation_quaternion = mpr.face(face)
         holistic_rotation_quaternion = mpr.holistic([pose, face, l_hand, r_hand])
