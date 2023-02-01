@@ -49,7 +49,6 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         if results.pose_landmarks:
             pose = cvt2array(results.pose_landmarks)
-            pose_rotation_quaternion = mpr.pose(pose)
 
         if results.face_landmarks:
             face = cvt2array(results.face_landmarks)
@@ -63,11 +62,12 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             r_hand = cvt2array(results.right_hand_landmarks)
 
         # Calculate rotations
+        pose_rotation_quaternion = mpr.pose(pose)
         l_hand_rotation_quaternion = mpr.hand(l_hand)
         r_hand_rotation_quaternion = mpr.hand(r_hand)
         hands_rotation_quaternion = mpr.hands([l_hand, r_hand])
         face_rotation_quaternion = mpr.face(face)
-        holistic_rotation_quaternion = mpr.holistic(pose, face, [l_hand, r_hand])
+        holistic_rotation_quaternion = mpr.holistic([pose, face, l_hand, r_hand])
 
         # Draw landmark annotation on the image.
         image.flags.writeable = True
