@@ -3,7 +3,7 @@ name = "mediapipe_rotations"
 version = "0.0.1"
 edition = "2021"
 authors = ["cgtinker <hello@cgtinker.com>"]
-license = "MIT"
+license = "GPL-2.0-or-later"
 repository = "https://github.com/cgtinker/MediapipeRotations"
 readme = "README.md"
 
