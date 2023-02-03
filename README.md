@@ -1,9 +1,12 @@
 # Mediapipe Rotations
 
+### Currently in development process.
 Future python package to calculate rotation data for Googles Mediapipe Detection data.
-Currently in development process.
+The calculations heavly relys on the crate `cgt_math` which is still in development process..
 
 ### Setup dev enviroment
+Either run the `setup.bash` or setup manually:
+
 ```
 python3 -m venv venv
 source venv/bin/activate
@@ -11,7 +14,6 @@ pip install -r requirements.txt
 maturin develop
 pytest
 ```
-
 
 ### Usage Example
 ```
