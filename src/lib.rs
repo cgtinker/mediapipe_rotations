@@ -88,7 +88,7 @@ fn holistic(data: Vec<Vec<[f32; 3]>>) -> PyResult<Vec<Vec<[f32; 4]>>> {
     // hand result
     let hand_result_l = _hand(hand_data_l);
     let hand_result_r = _hand(hand_data_r);
-    
+
     // face result
     let mut face_result = vec![[f32::NAN, f32::NAN, f32::NAN, f32::NAN]; 4];
     if face_data.len() == 468 {
@@ -97,7 +97,7 @@ fn holistic(data: Vec<Vec<[f32; 3]>>) -> PyResult<Vec<Vec<[f32; 4]>>> {
             face_result[i] = face_rotations[i].to_array();
         }
     }
-    
+
     // pose result
     let mut pose_result = vec![[f32::NAN, f32::NAN, f32::NAN, f32::NAN]; 36];
     if pose_data.len() == 33 {

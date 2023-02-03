@@ -1,5 +1,5 @@
 extern crate cgt_math;
-use cgt_math::{Plane, Quaternion, Vector3};
+use cgt_math::{Plane, Quaternion, Vector3, Axis};
 
 /// Calculates limb fk chain, hip, shoulder and face rotation.
 /// May uses hip center as pivot.
@@ -57,9 +57,10 @@ fn torso_rotation(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
 fn shoulder_rotation(data: &[Vector3; 36], rotation_data: &mut [Quaternion; 36]) {
     // As the torso rotation usually is used to rotate the rig,
     // the torso rotation got to be substracted from the hip rotation
-    let shoulder_rot =
-        Quaternion::from_vec_to_track_quat((data[12] - data[34]).normalize().neg(), 2, 1); // rotation from center to right shoulder
-    let hip_rot = Quaternion::from_vec_to_track_quat((data[24] - data[33]).normalize().neg(), 2, 1); // rotation from center to right hip
+    let shoulder_rot = Quaternion::rotate_towards((data[12]-data[34]).normalize(), Axis::Z, Axis::Y);
+        // Quaternion::from_vec_to_track_quat((data[12] - data[34]).normalize().neg(), 2, 1); // rotation from center to right shoulder
+    let hip_rot = Quaternion::rotate_towards((data[24] - data[33]).normalize(), Axis::Z, Axis::Y); // rotation from center to right hip
+    // let hip_rot = Quaternion::from_vec_to_track_quat((data[24] - data[33]).normalize().neg(), 2, 1); // rotation from center to right hip
     rotation_data[34] = shoulder_rot - hip_rot;
 }
 
@@ -68,7 +69,8 @@ fn calc_limb_chain_rotations(data: &[Vector3; 4]) -> [Quaternion; 3] {
     let mut arr: [Quaternion; 3] = [Quaternion::IDENTITY; 3];
     for i in 1..4 {
         arr[i - 1] =
-            Quaternion::from_vec_to_track_quat((data[i - 1] - data[i]).normalize().neg(), 4, 2);
+            Quaternion::rotate_towards((data[i-1]-data[i]).normalize().neg(), Axis::X, Axis::Z);
+            // Quaternion::from_vec_to_track_quat((data[i - 1] - data[i]).normalize().neg(), 4, 2);
     }
     return arr;
 }
