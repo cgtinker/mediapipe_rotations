@@ -1,8 +1,8 @@
 # Mediapipe Rotations
 
 ### Currently in development process.
-Future python package to calculate rotation data for Googles Mediapipe Detection data.
-The calculations heavly relys on the crate `cgt_math` which is still in development process..
+Future python package to calculate rotation data for Googles Mediapipe Detection results.
+The calculations heavly rely on the crate `cgt_math` which is also in development process.
 
 ### Setup dev enviroment
 Either run the `setup.bash` or setup manually:
@@ -96,3 +96,78 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 cap.release()
 
 ```
+
+### Results
+The results come in quaternions.
+There are some blank spots in the returned array, mainly for easier indexing.
+
+**Face**
+| Idx | Target          | + |
+| --- | ----------------| - |
+|  0  | head            | Q |
+|  1  | chin            | Q |
+|  2  | mouth corner.L  | Q |
+|  3  | mouth corner.R  | Q |
+
+**Hand**
+| Idx | Target            | + |
+| --- | ----------------- | - |
+| 0   | wrist             | Q |
+| 1   | thumb cmc         | Q |
+| 2   | thumb mcp         | Q |
+| 3   | thumb ip          | Q |
+| 4   | thumb tip         |   |
+| 5   | index finger mcp  | Q |
+| 6   | index finger pip  | Q |
+| 7   | index finger dip  | Q |
+| 8   | index finger tip  |   |
+| 9   | middle finger mcp | Q |
+| 10  | middle finger pip | Q |
+| 11  | middle finger dip | Q |
+| 12  | middle finger tip |   |
+| 13  | ring finger mcp   | Q |
+| 14  | ring finger pip   | Q |
+| 15  | ring finger dip   | Q |
+| 16  | ring finger tip   |   |
+| 17  | pinky mcp         | Q |
+| 18  | pinky pip         | Q |
+| 19  | pinky dip         | Q |
+| 20  | pinky tip         |   |
+
+**Pose**
+| 0  | nose             | + |
+| -- | ---------------- | - |
+| 1  | left eye inner   |   |
+| 2  | left eye         |   |
+| 3  | left eye outer   |   |
+| 4  | right eye inner  |   |
+| 5  | right eye        |   |
+| 6  | right eyerouter  |   |
+| 7  | left ear         |   |
+| 8  | right ear        |   |
+| 9  | mouth left       |   |
+| 10 | mouth right      |   |
+| 11 | left shoulder    | Q |
+| 12 | right shoulder   | Q |
+| 13 | left elbow       | Q |
+| 14 | right elbow      | Q |
+| 15 | left wrist       | Q |
+| 16 | right wrist      | Q |
+| 17 | left pinky       |   |
+| 18 | right pinky      |   |
+| 19 | left index       |   |
+| 20 | right index      |   |
+| 21 | left thumb       |   |
+| 22 | right thumb      |   |
+| 23 | left hip         | Q |
+| 24 | right hip        | Q |
+| 25 | left knee        | Q |
+| 26 | right knee       | Q |
+| 27 | left ankle       |   |
+| 28 | right ankle      |   |
+| 29 | left heel        |   |
+| 30 | right heel       |   |
+| 31 | left foot index  | Q |
+| 32 | right foot index | Q |
+| 33 | hip center       | Q |
+| 34 | shoulder center  | Q |
